@@ -1,10 +1,7 @@
 package net.xaviersala;
 
 import net.xaviersala.exceptions.VaquesException;
-import net.xaviersala.model.Vaca;
 import net.xaviersala.services.CampService;
-
-import java.util.List;
 
 import static spark.Spark.*;
 
@@ -13,9 +10,7 @@ public class VaquesService {
 
     public static void main(String[] args) {
 
-        List<Vaca> vaquesDelCamp;
-
-        get("/start/:quantes", (req, res) -> {
+        get("/vaques/start/:quantes", (req, res) -> {
             int quantesVaques = Integer.parseInt(req.params(":quantes"));
             campServei.init(quantesVaques);
             return campServei.getCasa();
@@ -24,31 +19,40 @@ public class VaquesService {
         get("/vaques/camp", (req, res) -> {
             return campServei.getCasa();
         }, new JSONTransformer());
-
+        
+        get("/vaques/camio", (req, res) -> {
+            return campServei.getCamio();
+        }, new JSONTransformer());
+        
         get("/vaques/ciutat", (req, res) -> {
             return campServei.getCiutat();
         }, new JSONTransformer());
 
-        get("/vaques/camp/:nomVaca", (req, res) -> {
+        get("/vaques/posacamio/:nomVaca", (req, res) -> {
             String nom = req.params(":nomVaca");
             if (campServei.PosaVacaAlCamio(nom)) {
                 return "Posar la vaca " + nom + " al camió";
             }
             else
             {
-                return "La vaca pesa massa";
+                res.status(400);
+                return "La vaca no es pot posar al camió";
             }
         }, new JSONTransformer());
 
-        get("/vaques/camio", (req, res) -> {
-            return campServei.getCamio();
+        get("/vaques/posacamp/:nomVaca", (req, res) -> {
+            String nom = req.params(":nomVaca");
+            if (campServei.PosaVacaAlCamp(nom)) {
+                return "Posar la vaca " + nom + " al camp";
+            }
+            else
+            {
+                res.status(400);
+                return "Quina vaca s'ha de posar?";
+            }
         }, new JSONTransformer());
 
-        get("/camio", (req, res) -> {
-            return campServei.getCamio();
-        }, new JSONTransformer());
-
-        get("/camio/tocity", (req, res) -> {
+        get("/vaques/tocity", (req, res) -> {
             double kg = campServei.CamioACiutat();
             return kg;
         }, new JSONTransformer());

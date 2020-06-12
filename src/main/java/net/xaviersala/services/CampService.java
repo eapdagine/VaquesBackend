@@ -62,8 +62,21 @@ public class CampService {
                 .filter(n -> n.getNom().equals(nom))
                 .findFirst()
                 .get();
+        if (vaca == null) return false;
         casa.remove(vaca);
         return camio.EntraVaca(vaca);
+    }
+
+    public boolean PosaVacaAlCamp(String nom) {
+        Vaca vaca = camio.getVaques()
+                .stream()
+                .filter(n -> n.getNom().equals(nom))
+                .findFirst()
+                .get();
+        if (vaca == null) return false;
+        camio.remove(vaca);
+        casa.add(vaca);
+        return true;
     }
 
 }

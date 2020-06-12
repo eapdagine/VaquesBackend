@@ -35,4 +35,8 @@ public class Camio {
         pesActual = 0;
         vaques.clear();
     }
+
+	public void remove(Vaca vaca) {
+		vaques.remove(vaca);		
+	}
 }
