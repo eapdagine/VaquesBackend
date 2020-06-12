@@ -29,12 +29,18 @@ public class MemoryVaquesDbRepository implements IVaquesDbRepository {
                 add(new Vaca("Blanca", 99.8, races.get(3)));
                 add(new Vaca("Conxi", 201.7, races.get(0)));
                 add(new Vaca("Guenya", 173.0, races.get(4)));
+                add(new Vaca("Marta", 280.2, races.get(2)));
             }
         };
     };
 
     @Override
     public List<Vaca> getVaques(int quantes) throws VaquesException {
-        return vaques.subList(0,quantes);
+        List<Vaca> vacalist = new ArrayList<Vaca>();
+        for(int i=0; i<quantes; i++) {
+        	if (i>vaques.size()) break;
+        	vacalist.add(vaques.get(i));
+        }
+        return vacalist;
     }
 }

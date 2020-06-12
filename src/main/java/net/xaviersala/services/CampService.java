@@ -50,10 +50,10 @@ public class CampService {
     }
 
     public double CamioACiutat() {
-        double pes = camio.getPesActual();
+        double litres = camio.getLitres();
         ciutat.addAll(camio.getVaques());
         camio.buida();
-        return pes;
+        return litres;
     }
 
     public boolean PosaVacaAlCamio(String nom) {

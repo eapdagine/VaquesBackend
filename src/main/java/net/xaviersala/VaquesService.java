@@ -19,11 +19,11 @@ public class VaquesService {
         get("/vaques/camp", (req, res) -> {
             return campServei.getCasa();
         }, new JSONTransformer());
-        
+
         get("/vaques/camio", (req, res) -> {
             return campServei.getCamio();
         }, new JSONTransformer());
-        
+
         get("/vaques/ciutat", (req, res) -> {
             return campServei.getCiutat();
         }, new JSONTransformer());
@@ -31,7 +31,7 @@ public class VaquesService {
         get("/vaques/posacamio/:nomVaca", (req, res) -> {
             String nom = req.params(":nomVaca");
             if (campServei.PosaVacaAlCamio(nom)) {
-                return "Posar la vaca " + nom + " al camió";
+                return "Ok";
             }
             else
             {
