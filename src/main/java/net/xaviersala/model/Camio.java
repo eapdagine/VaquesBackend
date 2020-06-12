@@ -45,6 +45,8 @@ public class Camio {
     }
 
 	public void remove(Vaca vaca) {
-		vaques.remove(vaca);		
+		pesActual -= vaca.getPes();
+		litres -= vaca.getLitres();
+        vaques.remove(vaca);
 	}
 }

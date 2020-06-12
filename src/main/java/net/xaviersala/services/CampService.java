@@ -56,15 +56,20 @@ public class CampService {
         return litres;
     }
 
-    public boolean PosaVacaAlCamio(String nom) {
+    public boolean PosaVacaAlCamio(String nom) throws VaquesException {
         Vaca vaca = casa
                 .stream()
                 .filter(n -> n.getNom().equals(nom))
                 .findFirst()
-                .get();
-        if (vaca == null) return false;
-        casa.remove(vaca);
-        return camio.EntraVaca(vaca);
+                .orElse(null);
+        if (vaca == null) {
+            throw new VaquesException("Vaca " + nom + " no trobada");
+        }
+        var entra = camio.EntraVaca(vaca);
+        if (entra) {
+            casa.remove(vaca);
+        }
+        return entra;
     }
 
     public boolean PosaVacaAlCamp(String nom) {
@@ -72,7 +77,7 @@ public class CampService {
                 .stream()
                 .filter(n -> n.getNom().equals(nom))
                 .findFirst()
-                .get();
+                .orElse(null);
         if (vaca == null) return false;
         camio.remove(vaca);
         casa.add(vaca);

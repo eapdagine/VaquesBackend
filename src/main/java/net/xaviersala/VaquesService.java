@@ -30,25 +30,29 @@ public class VaquesService {
 
         get("/vaques/posacamio/:nomVaca", (req, res) -> {
             String nom = req.params(":nomVaca");
-            if (campServei.PosaVacaAlCamio(nom)) {
-                return "Ok";
-            }
-            else
-            {
+            try {
+                if (campServei.PosaVacaAlCamio(nom)) {
+                    return new Result("OK");
+                } else {
+                    System.out.println("ERROR");
+                    res.status(400);
+                    return new Result("La vaca pesa massa");
+                }
+            } catch (VaquesException e) {
                 res.status(400);
-                return "La vaca no es pot posar al camió";
+                return new Result(e.getMessage());
             }
         }, new JSONTransformer());
 
         get("/vaques/posacamp/:nomVaca", (req, res) -> {
             String nom = req.params(":nomVaca");
             if (campServei.PosaVacaAlCamp(nom)) {
-                return "Posar la vaca " + nom + " al camp";
+                return new Result("Ok");
             }
             else
             {
                 res.status(400);
-                return "Quina vaca s'ha de posar?";
+                return new Result("Quina vaca s'ha de posar?");
             }
         }, new JSONTransformer());
 

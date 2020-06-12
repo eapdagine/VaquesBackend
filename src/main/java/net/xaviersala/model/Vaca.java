@@ -1,18 +1,18 @@
 package net.xaviersala.model;
 
 public class Vaca {
-    private String nom;
+    private String Nom;
     private double pes;
     private Raça raça;
 
     public Vaca(String nom, double pes, Raça raça) {
-        this.nom = nom;
+        this.Nom = nom;
         this.pes = pes;
         this.raça = raça;
     }
 
     public String getNom() {
-        return nom;
+        return Nom;
     }
 
     public double getPes() {
@@ -26,7 +26,7 @@ public class Vaca {
     @Override
     public String toString() {
         return "Vaca{" +
-                "nom='" + nom + '\'' +
+                "nom='" + Nom + '\'' +
                 ", pes=" + pes +
                 ", raça=" + raça.getNom() +
                 '}';
