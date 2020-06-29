@@ -22,7 +22,7 @@ public class Camio {
     }
 
     public boolean EntraVaca(Vaca vaca) {
-        if (pesActual + vaca.getPes() < maxPes) {
+        if (pesActual + vaca.getPes() <= maxPes) {
             pesActual += vaca.getPes();
             litres += vaca.getLitres();
             vaques.add(vaca);
