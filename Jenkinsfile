@@ -4,15 +4,12 @@ pipeline {
     stages {
         stage("compilar") {
             steps {
-                
-                        sh 'mvn compile'
+                sh 'mvn compile'
             }
         }
         stage("tests") {
             steps {
-                dir("vaquesrest") {
                     sh "mvn test"
-                }
             }
         }
         stage("Mes coses") {
