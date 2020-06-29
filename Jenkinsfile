@@ -4,11 +4,8 @@ pipeline {
     stages {
         stage("compilar") {
             steps {
-                dir("vaquesrest") {
-                    
+                
                         sh 'mvn compile'
-                    
-                }
             }
         }
         stage("tests") {
