@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'Jdk11'
+        jdk 'openjdk-11'
    }
     stages {
         stage("compilar") {
