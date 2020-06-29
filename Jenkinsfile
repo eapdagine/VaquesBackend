@@ -5,9 +5,9 @@ pipeline {
         stage("compilar") {
             steps {
                 dir("vaquesrest") {
-                    withMaven() {
+                    
                         sh 'mvn compile'
-                    }
+                    
                 }
             }
         }
